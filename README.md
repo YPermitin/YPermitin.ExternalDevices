@@ -1,0 +1,2 @@
+# YPermitin.ExternalDevices
+Управление устройствами
