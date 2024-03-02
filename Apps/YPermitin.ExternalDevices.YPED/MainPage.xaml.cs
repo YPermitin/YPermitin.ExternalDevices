@@ -71,7 +71,7 @@ namespace YPermitin.ExternalDevices.YPED
             byte[] receiveBytes = client.EndReceive(callbackResult, ref endPoint!);
             string receiveString = Encoding.UTF8.GetString(receiveBytes);
 
-            if (receiveString == UdpBroadcastMessage)
+            if (receiveString.StartsWith(UdpBroadcastMessage, StringComparison.InvariantCultureIgnoreCase))
             {
                 var deviceInfo = new FoundDeviceInfo();
                 deviceInfo.Address = endPoint.Address.ToString();

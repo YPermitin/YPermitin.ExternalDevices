@@ -33,6 +33,7 @@ Visual Studio обязательна только для приложений н
 * Apps - клиентские приложения.
 	* YPermitin.ExternalDevices.YPED - клиентское кросплатформенное приложение на [.NET MAUI](https://learn.microsoft.com/ru-ru/dotnet/maui/what-is-maui?view=net-maui-8.0) для Android / iOS, MacOS, Windows для управления устройствами и сервисами из проекта.
 * Web - проекты API или других видов веб-приложений.
+	* YPermitin.ExternalDevices.ManagementService - сервис управления устройством и других функций.
 * Libs - библиотеки и вспомогательные проекты.
 * Tests - модульные тесты и связанные проверки.
 * Docs - документация и другая сопутствующая информация о проекте.
