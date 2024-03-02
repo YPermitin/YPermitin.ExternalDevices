@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="YPermitin.ExternalDevices.YPED.MyIPPage"
+             Title="Мой IP">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <Label
+                Text="Информация об адресах"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <ProgressBar 
+                Progress="1" 
+                ProgressColor="SeaGreen" />
+
+            <Label
+                Text="Внешний IP-адрес"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Внешний IP-адрес устройства в сети Интернет" />
+
+            <HorizontalStackLayout
+                Padding="30,0"
+                Spacing="25"
+                VerticalOptions="Center">
+
+                <Button
+                    x:Name="ExternalIpAddressBtn"
+                    Text="Обновить" 
+                    SemanticProperties.Hint="Определение внешнего IP-адреса клиентского устройства"
+                    Clicked="OnExternalIpAddressClicked"
+                    HorizontalOptions="Center" />
+
+                <Label
+                    x:Name="ExternalIpAddressLbl"
+                    Text="..."
+                    Style="{StaticResource SubHeadline}"
+                    SemanticProperties.HeadingLevel="Level2"
+                    SemanticProperties.Description="Внешний IP-адрес"
+                    VerticalOptions="Center"/>
+
+            </HorizontalStackLayout>
+
+            <ProgressBar 
+                Progress="1" 
+                ProgressColor="SeaGreen" />
+
+            <Label
+                Text="Внутренние IP-адреса"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="IP-адреса устройства во внутренней сети" />
+
+            <Button
+                x:Name="InternalIpAddressBtn"
+                Text="Обновить список внутренних адресов" 
+                SemanticProperties.Hint="Определение внутренних IP-адресов клиентского устройства"
+                Clicked="OnInternalIpAddressClicked"
+                HorizontalOptions="Fill" />
+
+            <TableView x:Name="InternalIpAddressesTable">
+                <TableRoot>
+                    <TableSection>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+
+            <ProgressBar 
+                Progress="1" 
+                ProgressColor="SeaGreen" />
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
