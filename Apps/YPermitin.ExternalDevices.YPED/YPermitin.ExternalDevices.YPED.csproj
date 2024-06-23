@@ -71,4 +71,8 @@
 	  <Folder Include="Resources\Images\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Libs\YPermitin.ExternalDevices.NetworkUtils\YPermitin.ExternalDevices.NetworkUtils.csproj" />
+	</ItemGroup>
+
 </Project>

@@ -3,6 +3,7 @@ using System.Net;
 using System.Text;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Hosting.Server;
+using YPermitin.ExternalDevices.NetworkUtils;
 
 namespace YPermitin.ExternalDevices.ManagementService.Services
 {
@@ -12,8 +13,6 @@ namespace YPermitin.ExternalDevices.ManagementService.Services
         private Timer? _timer;
         private readonly IServiceProvider _services;
 
-        private readonly int _udpClientPort = 9876;
-        private readonly UdpClient? _udpClient = new();
 
         private string? _serverName;
         private int? _serverPort;
@@ -23,12 +22,6 @@ namespace YPermitin.ExternalDevices.ManagementService.Services
         {
             _logger = logger;
             _services = services;
-
-            if (_udpClient != null)
-            {
-                _udpClient.Client.Bind(new IPEndPoint(IPAddress.Any, _udpClientPort));
-                _udpClient.Client.SendTimeout = 5000;
-            }
         }
 
         public Task StartAsync(CancellationToken stoppingToken)
@@ -67,8 +60,10 @@ namespace YPermitin.ExternalDevices.ManagementService.Services
             }
             else
             {
-                var data = Encoding.UTF8.GetBytes($"[YPERMITIN.EXTERNALDEVICES.DISCOVERY]:[{_serverName}:{_serverPort}]");
-                _udpClient?.Send(data, data.Length, "255.255.255.255", _udpClientPort);
+                using (DeviceDetector deviceDetector = new DeviceDetector())
+                {
+                    deviceDetector.SendBroadcastMessage(_serverName ?? "<Неизвестно>", _serverPort ?? 80);
+                }
             }
 
             _logger.LogInformation("Окончание отправки широковещательного сообщения обнаружения через UPD.");
@@ -86,7 +81,6 @@ namespace YPermitin.ExternalDevices.ManagementService.Services
         public void Dispose()
         {
             _timer?.Dispose();
-            _udpClient?.Dispose();
         }
     }
 }

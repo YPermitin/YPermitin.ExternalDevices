@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libs\YPermitin.ExternalDevices.NetworkUtils\YPermitin.ExternalDevices.NetworkUtils.csproj" />
+  </ItemGroup>
+
 </Project>

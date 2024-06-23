@@ -19,7 +19,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{BF3D3C21-5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{81F451A7-5E01-4741-99F0-7B96F97512C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YPermitin.ExternalDevices.ManagementService", "Web\YPermitin.ExternalDevices.ManagementService\YPermitin.ExternalDevices.ManagementService.csproj", "{D49A3B66-66C1-41F9-AFB4-DCDCA5B98904}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YPermitin.ExternalDevices.ManagementService", "Web\YPermitin.ExternalDevices.ManagementService\YPermitin.ExternalDevices.ManagementService.csproj", "{D49A3B66-66C1-41F9-AFB4-DCDCA5B98904}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YPermitin.ExternalDevices.NetworkUtils", "Libs\YPermitin.ExternalDevices.NetworkUtils\YPermitin.ExternalDevices.NetworkUtils.csproj", "{8CFDD762-61E1-4E27-ABED-2AE5DDC5EACC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YPermitin.ExternalDevices.NetworkUtils.Tests", "YPermitin.ExternalDevices.NetworkUtils.Tests\YPermitin.ExternalDevices.NetworkUtils.Tests.csproj", "{C6F86898-5694-4F03-BF93-C425A1B07A7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +41,14 @@ Global
 		{D49A3B66-66C1-41F9-AFB4-DCDCA5B98904}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D49A3B66-66C1-41F9-AFB4-DCDCA5B98904}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D49A3B66-66C1-41F9-AFB4-DCDCA5B98904}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CFDD762-61E1-4E27-ABED-2AE5DDC5EACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CFDD762-61E1-4E27-ABED-2AE5DDC5EACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CFDD762-61E1-4E27-ABED-2AE5DDC5EACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CFDD762-61E1-4E27-ABED-2AE5DDC5EACC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6F86898-5694-4F03-BF93-C425A1B07A7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6F86898-5694-4F03-BF93-C425A1B07A7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6F86898-5694-4F03-BF93-C425A1B07A7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6F86898-5694-4F03-BF93-C425A1B07A7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +56,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9CA07A48-C94D-42E0-8245-E054DA5A69D9} = {EB3B58A9-D9D1-4C35-B191-D9DD894EC39A}
 		{D49A3B66-66C1-41F9-AFB4-DCDCA5B98904} = {66ECF0FA-859A-4961-A4D3-648EC6F25922}
+		{8CFDD762-61E1-4E27-ABED-2AE5DDC5EACC} = {BF3D3C21-5D25-4875-808E-66BBD4E8C510}
+		{C6F86898-5694-4F03-BF93-C425A1B07A7E} = {81F451A7-5E01-4741-99F0-7B96F97512C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57906219-8FE1-4FF9-AD65-1852699CF14E}
