@@ -77,7 +77,7 @@ namespace YPermitin.ExternalDevices.NetworkUtils
                         {
                             var deviceInfo = new DetectedDeviceInfo
                             {
-                                Address = endPoint.Address.ToString(),
+                                Address = udpReceiveResult.RemoteEndPoint.Address.ToString(),
                                 ClientName = body.ClientName,
                                 Date = body.Date,
                                 ServerPort = body.ServerPort,

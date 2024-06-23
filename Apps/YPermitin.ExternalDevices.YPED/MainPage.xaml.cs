@@ -37,12 +37,12 @@ namespace YPermitin.ExternalDevices.YPED
                 await MainThread.InvokeOnMainThreadAsync(() =>
                 {
                     var tableRoot = DiscoveryDevicesTable.Root.First();
-                    if (!tableRoot.Any(c => c is TextCell cell && cell.Text == device.Address))
+                    if (!tableRoot.Any(c => c is TextCell cell && cell.Text == device.ClientName))
                     {
                         var newCell = new TextCell()
                         {
-                            Text = device.Address,
-                            Detail = device.Address,
+                            Text = device.ClientName,
+                            Detail = $"{device.Address}:{device.ServerPort}",
                             TextColor = Color.FromRgb(255, 255, 255)
                         };
                         newCell.Tapped += DeviceItemTapped;

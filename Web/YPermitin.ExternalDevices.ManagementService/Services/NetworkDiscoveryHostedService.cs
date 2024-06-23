@@ -12,16 +12,22 @@ namespace YPermitin.ExternalDevices.ManagementService.Services
         private readonly ILogger<NetworkDiscoveryHostedService> _logger;
         private Timer? _timer;
         private readonly IServiceProvider _services;
+        private DeviceDetector _deviceDetector;
 
 
-        private string? _serverName;
+        private readonly string? _serverName;
         private int? _serverPort;
 
         public NetworkDiscoveryHostedService(IServiceProvider services,
+            IConfiguration configuration,
             ILogger<NetworkDiscoveryHostedService> logger)
         {
             _logger = logger;
             _services = services;
+
+            _serverName = configuration.GetValue("DiscoveryInfo:ClientName", Dns.GetHostName());
+            _serverPort = configuration.GetValue("DiscoveryInfo:ClientPort", 0);
+            _deviceDetector = new DeviceDetector();
         }
 
         public Task StartAsync(CancellationToken stoppingToken)
@@ -38,7 +44,7 @@ namespace YPermitin.ExternalDevices.ManagementService.Services
         {
             _logger.LogInformation("Начало отправки широковещательного сообщения обнаружения через UPD.");
 
-            if (_serverName == null || _serverPort == null)
+            if (_serverPort == 0)
             {
                 var server = _services.GetRequiredService<IServer>();
                 var allAddresses = server.Features.Get<IServerAddressesFeature>()?.Addresses?.ToArray();
@@ -48,21 +54,27 @@ namespace YPermitin.ExternalDevices.ManagementService.Services
                     try
                     {
                         var serverAddressUri = new Uri(serverAddress);
-                        _serverName = serverAddressUri.Host;
                         _serverPort = serverAddressUri.Port;
                     }
                     catch
                     {
-                        _serverName = string.Empty;
                         _serverPort = 0;
                     }
                 }
             }
-            else
+
+            if (!string.IsNullOrEmpty(_serverName) && _serverPort != 0)
             {
-                using (DeviceDetector deviceDetector = new DeviceDetector())
+                try
                 {
-                    deviceDetector.SendBroadcastMessage(_serverName ?? "<Неизвестно>", _serverPort ?? 80);
+                    _deviceDetector.SendBroadcastMessage(_serverName ?? "<Неизвестно>", _serverPort ?? 80);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Ошибка при отправке широковещательного сообщения обнаружения через UPD.");
+
+                    _deviceDetector.Dispose();
+                    _deviceDetector = new DeviceDetector();
                 }
             }
 
@@ -81,6 +93,7 @@ namespace YPermitin.ExternalDevices.ManagementService.Services
         public void Dispose()
         {
             _timer?.Dispose();
+            _deviceDetector?.Dispose();
         }
     }
 }
