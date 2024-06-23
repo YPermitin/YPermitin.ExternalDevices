@@ -20,21 +20,10 @@ namespace YPermitin.ExternalDevices.ManagementService.Controllers
         [ActionName("base")]
         public IActionResult GetServiceInfo()
         {
-            string hostname = Dns.GetHostName();
-            string fullHostname;
-            try
-            {
-                fullHostname = Dns.GetHostEntry("").HostName;
-            }
-            catch
-            {
-                fullHostname = hostname;
-            }
-
             var response = new ServiceInfo
             {
                 Hostname = Dns.GetHostName(),
-                FullHostname = fullHostname
+                HostDateUTC = DateTime.UtcNow
             };
 
             return Ok(response);

@@ -1,6 +1,4 @@
-﻿using System.Net.Sockets;
-using System.Net;
-using System.Text;
+﻿using System.Net;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Hosting.Server;
 using YPermitin.ExternalDevices.NetworkUtils;

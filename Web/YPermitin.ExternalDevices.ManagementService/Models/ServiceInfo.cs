@@ -4,6 +4,6 @@ namespace YPermitin.ExternalDevices.ManagementService.Models
     {
         public string? Hostname { get; set; }
 
-        public string? FullHostname { get; set; }
+        public DateTime? HostDateUTC { get; set; }
     }
 }
