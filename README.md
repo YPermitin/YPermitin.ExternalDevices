@@ -34,7 +34,10 @@ Visual Studio обязательна только для приложений н
 * Web - проекты API или других видов веб-приложений.
 	* YPermitin.ExternalDevices.ManagementService - сервис управления устройством и других функций.
 * Libs - библиотеки и вспомогательные проекты.
+    * YPermitin.ExternalDevices.ManagementService.Client - клиентская библиотека для сервиса **YPermitin.ExternalDevices.ManagementService**.
+    * YPermitin.ExternalDevices.NetworkUtils - вспомогательная библиотека для работы с сетью.
 * Tests - модульные тесты и связанные проверки.
+    * YPermitin.ExternalDevices.NetworkUtils.Tests - модульные тесты для библиотеки работы с сетью.
 * Docs - документация и другая сопутствующая информация о проекте.
 
 ## Развертывание проекта

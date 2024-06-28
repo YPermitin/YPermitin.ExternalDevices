@@ -23,9 +23,9 @@
 		</AssemblyAttribute>
 	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Libs\YPermitin.ExternalDevices.NetworkUtils\YPermitin.ExternalDevices.NetworkUtils.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Libs\YPermitin.ExternalDevices.NetworkUtils\YPermitin.ExternalDevices.NetworkUtils.csproj" />
+	</ItemGroup>
 
   <ItemGroup>
     <Using Include="Xunit" />

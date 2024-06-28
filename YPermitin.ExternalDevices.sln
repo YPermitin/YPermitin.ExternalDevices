@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YPermitin.ExternalDevices.M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YPermitin.ExternalDevices.NetworkUtils", "Libs\YPermitin.ExternalDevices.NetworkUtils\YPermitin.ExternalDevices.NetworkUtils.csproj", "{8CFDD762-61E1-4E27-ABED-2AE5DDC5EACC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YPermitin.ExternalDevices.NetworkUtils.Tests", "YPermitin.ExternalDevices.NetworkUtils.Tests\YPermitin.ExternalDevices.NetworkUtils.Tests.csproj", "{C6F86898-5694-4F03-BF93-C425A1B07A7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YPermitin.ExternalDevices.NetworkUtils.Tests", "Tests\YPermitin.ExternalDevices.NetworkUtils.Tests\YPermitin.ExternalDevices.NetworkUtils.Tests.csproj", "{C6F86898-5694-4F03-BF93-C425A1B07A7E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YPermitin.ExternalDevices.ManagementService.Client", "Libs\YPermitin.ExternalDevices.ManagementService.Client\YPermitin.ExternalDevices.ManagementService.Client.csproj", "{E22FB8BB-2C7B-47C8-9FA2-A3A93F71D7FB}"
 EndProject
