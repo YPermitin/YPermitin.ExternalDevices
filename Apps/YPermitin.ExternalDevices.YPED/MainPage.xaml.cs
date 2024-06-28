@@ -7,7 +7,7 @@ namespace YPermitin.ExternalDevices.YPED
     {
         private readonly DeviceDetector _deviceDetector;
         private readonly IManagementServiceClient _managementServiceClient;
-        private readonly int SearchDevicesWaitTimeSec = 15;
+        private readonly int SearchDevicesWaitTimeSec = 60;
 
         public MainPage()
         {
