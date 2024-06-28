@@ -21,9 +21,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{81F451A7
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YPermitin.ExternalDevices.ManagementService", "Web\YPermitin.ExternalDevices.ManagementService\YPermitin.ExternalDevices.ManagementService.csproj", "{D49A3B66-66C1-41F9-AFB4-DCDCA5B98904}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YPermitin.ExternalDevices.NetworkUtils", "Libs\YPermitin.ExternalDevices.NetworkUtils\YPermitin.ExternalDevices.NetworkUtils.csproj", "{8CFDD762-61E1-4E27-ABED-2AE5DDC5EACC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YPermitin.ExternalDevices.NetworkUtils", "Libs\YPermitin.ExternalDevices.NetworkUtils\YPermitin.ExternalDevices.NetworkUtils.csproj", "{8CFDD762-61E1-4E27-ABED-2AE5DDC5EACC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YPermitin.ExternalDevices.NetworkUtils.Tests", "YPermitin.ExternalDevices.NetworkUtils.Tests\YPermitin.ExternalDevices.NetworkUtils.Tests.csproj", "{C6F86898-5694-4F03-BF93-C425A1B07A7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YPermitin.ExternalDevices.NetworkUtils.Tests", "YPermitin.ExternalDevices.NetworkUtils.Tests\YPermitin.ExternalDevices.NetworkUtils.Tests.csproj", "{C6F86898-5694-4F03-BF93-C425A1B07A7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YPermitin.ExternalDevices.ManagementService.Client", "Libs\YPermitin.ExternalDevices.ManagementService.Client\YPermitin.ExternalDevices.ManagementService.Client.csproj", "{E22FB8BB-2C7B-47C8-9FA2-A3A93F71D7FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{C6F86898-5694-4F03-BF93-C425A1B07A7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6F86898-5694-4F03-BF93-C425A1B07A7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6F86898-5694-4F03-BF93-C425A1B07A7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E22FB8BB-2C7B-47C8-9FA2-A3A93F71D7FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E22FB8BB-2C7B-47C8-9FA2-A3A93F71D7FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E22FB8BB-2C7B-47C8-9FA2-A3A93F71D7FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E22FB8BB-2C7B-47C8-9FA2-A3A93F71D7FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +64,7 @@ Global
 		{D49A3B66-66C1-41F9-AFB4-DCDCA5B98904} = {66ECF0FA-859A-4961-A4D3-648EC6F25922}
 		{8CFDD762-61E1-4E27-ABED-2AE5DDC5EACC} = {BF3D3C21-5D25-4875-808E-66BBD4E8C510}
 		{C6F86898-5694-4F03-BF93-C425A1B07A7E} = {81F451A7-5E01-4741-99F0-7B96F97512C8}
+		{E22FB8BB-2C7B-47C8-9FA2-A3A93F71D7FB} = {BF3D3C21-5D25-4875-808E-66BBD4E8C510}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57906219-8FE1-4FF9-AD65-1852699CF14E}

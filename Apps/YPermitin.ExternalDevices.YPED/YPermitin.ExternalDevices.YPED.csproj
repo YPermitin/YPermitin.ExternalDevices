@@ -72,6 +72,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\Libs\YPermitin.ExternalDevices.ManagementService.Client\YPermitin.ExternalDevices.ManagementService.Client.csproj" />
 	  <ProjectReference Include="..\..\Libs\YPermitin.ExternalDevices.NetworkUtils\YPermitin.ExternalDevices.NetworkUtils.csproj" />
 	</ItemGroup>
 

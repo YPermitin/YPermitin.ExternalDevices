@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using YPermitin.ExternalDevices.ManagementService.Client;
 
 namespace YPermitin.ExternalDevices.YPED
 {
@@ -18,6 +19,9 @@ namespace YPermitin.ExternalDevices.YPED
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            
+            var services = builder.Services;
+            services.RegisterManagementServiceClient();
 
             return builder.Build();
         }

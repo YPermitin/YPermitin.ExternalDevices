@@ -65,7 +65,9 @@ namespace YPermitin.ExternalDevices.ManagementService.Services
             {
                 try
                 {
-                    _deviceDetector.SendBroadcastMessage(_serverName ?? "<Неизвестно>", _serverPort ?? 80);
+                    _deviceDetector.SendBroadcastMessage(_serverName ?? "<Неизвестно>", _serverPort ?? 80)
+                        .GetAwaiter()
+                        .GetResult();
                 }
                 catch (Exception ex)
                 {

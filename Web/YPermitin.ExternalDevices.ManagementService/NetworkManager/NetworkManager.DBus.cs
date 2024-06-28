@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using Tmds.DBus;
 
-[assembly: InternalsVisibleTo(Tmds.DBus.Connection.DynamicAssemblyName)]
+[assembly: InternalsVisibleTo(Connection.DynamicAssemblyName)]
 namespace YPermitin.ExternalDevices.ManagementService.NetworkManager
 {
     [DBusInterface("org.freedesktop.DBus.ObjectManager")]

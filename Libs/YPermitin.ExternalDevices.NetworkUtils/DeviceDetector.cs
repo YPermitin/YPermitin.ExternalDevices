@@ -8,30 +8,34 @@ namespace YPermitin.ExternalDevices.NetworkUtils
 {
     public class DeviceDetector : IDisposable
     {
+        private readonly IPAddress _udpBroadcastGroupAddress;
         private readonly int _udpClientSendTimeout = 5000;
         private readonly int _udpClientReceiveTimeout = 5000;
         private readonly int _udpClientPort;
-        private readonly IPEndPoint _udpBroadcastEndPoint = new(0, 0);
+        private readonly IPEndPoint _udpBroadcastEndPoint;
         private readonly UdpClient _udpClient;
 
         private readonly JsonSerializerOptions _defaultJsonSerializerOptions =
             new() { PropertyNameCaseInsensitive = false };
 
-        public DeviceDetector(int port = 9876)
+        public DeviceDetector(int port = 9876, IPAddress? groupAddress = null)
         {
             _udpClientPort = port;
+            _udpBroadcastGroupAddress = groupAddress ?? IPAddress.Parse("239.255.255.255");
+            _udpBroadcastEndPoint = new IPEndPoint(_udpBroadcastGroupAddress, _udpClientPort);
 
-            _udpClient = new UdpClient();
-            //_udpClient.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            _udpClient = new UdpClient(_udpClientPort);            
             _udpClient.Client.SendTimeout = _udpClientSendTimeout;
             _udpClient.Client.ReceiveTimeout = _udpClientReceiveTimeout;
-            _udpClient.Client.Bind(new IPEndPoint(IPAddress.Any, _udpClientPort));
+            //_udpClient.Client.Bind(new IPEndPoint(IPAddress.Any, _udpClientPort));
+
+            _udpClient.JoinMulticastGroup(_udpBroadcastGroupAddress);
         }
 
-        public void SendBroadcastMessage(string serverName, int serverPort, CancellationToken cancellationToken = default)
+        public async Task SendBroadcastMessage(string serverName, int serverPort, CancellationToken cancellationToken = default)
         {
             DateTime currentDate = DateTime.UtcNow;
-            var dataJson = System.Text.Json.JsonSerializer.Serialize(new BroadcastMessageBody
+            var dataJson = JsonSerializer.Serialize(new BroadcastMessageBody
             {
                 ClientName = serverName,
                 ServerPort = serverPort,
@@ -39,9 +43,7 @@ namespace YPermitin.ExternalDevices.NetworkUtils
             }, _defaultJsonSerializerOptions);
             var data = Encoding.UTF8.GetBytes($"[YPERMITIN.EXTERNALDEVICES.DISCOVERY]:{dataJson}");
 
-            //await _udpClient?.SendAsync(data, data.Length, _udpBroadcastEndPoint)!;
-
-            _udpClient?.Send(data, data.Length, "255.255.255.255", _udpClientPort);
+            await _udpClient.SendAsync(data, _udpBroadcastEndPoint, cancellationToken);
         }
 
         public async Task StartSearch(Func<DetectedDeviceInfo, OnDeviceDetectedEventArgs, Task> onDeviceDetected, 
@@ -50,14 +52,13 @@ namespace YPermitin.ExternalDevices.NetworkUtils
         {
             var eventArgs = new OnDeviceDetectedEventArgs();
             UdpClient client = _udpClient;
-            IPEndPoint endPoint = _udpBroadcastEndPoint;
             CancellationTokenSource cts = new CancellationTokenSource();
             DateTime startTime = DateTime.UtcNow;
 
             while (!cancellationToken.IsCancellationRequested
                    && !eventArgs.StopSearching
                    && (timeoutMs < 0 || (DateTime.UtcNow - startTime).TotalMilliseconds <= timeoutMs))
-            { 
+            {
                 var udpReceiveResultTask = client.ReceiveAsync(cancellationToken);
 
                 while (!cancellationToken.IsCancellationRequested

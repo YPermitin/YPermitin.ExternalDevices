@@ -3,11 +3,6 @@ namespace YPermitin.ExternalDevices.NetworkUtils.Tests
     [CollectionDefinition("Device Detector", DisableParallelization = true)]
     public class DeviceDetectorTest
     {
-        public DeviceDetectorTest()
-        {
-            
-        }
-
         [Fact]
         public async Task DeviceDetectorSimpleSearchTest()
         {
@@ -24,7 +19,7 @@ namespace YPermitin.ExternalDevices.NetworkUtils.Tests
                 {
                     while (!cts.IsCancellationRequested)
                     {
-                        deviceDetector.SendBroadcastMessage(clientTestName, clientTestPort, cts.Token);
+                        await deviceDetector.SendBroadcastMessage(clientTestName, clientTestPort, cts.Token);
                         await Task.Delay(1000);
                     }
                 }, cts.Token);
@@ -41,8 +36,7 @@ namespace YPermitin.ExternalDevices.NetworkUtils.Tests
 
                 await broadcastMessagingTask.WaitAsync(TimeSpan.FromSeconds(10));
             }
-
-            Assert.Equal("0.0.0.0", foundDevice.Address);
+            
             Assert.Equal(clientTestPort, foundDevice.ServerPort);
             Assert.Equal(clientTestName, foundDevice.ClientName);
             Assert.True((DateTime.UtcNow - foundDevice.Date).TotalSeconds < 60);
@@ -64,7 +58,7 @@ namespace YPermitin.ExternalDevices.NetworkUtils.Tests
                 {
                     while (!cts.IsCancellationRequested)
                     {
-                        deviceDetector.SendBroadcastMessage(clientTestName, clientTestPort, cts.Token);
+                        await deviceDetector.SendBroadcastMessage(clientTestName, clientTestPort, cts.Token);
                         await Task.Delay(1000);
                     }
                 }, cts.Token);
@@ -88,7 +82,6 @@ namespace YPermitin.ExternalDevices.NetworkUtils.Tests
             }
 
             Assert.Equal(3, foundDevices.Count);
-            Assert.Equal("0.0.0.0", foundDevices[0].Address);
             Assert.Equal(clientTestPort, foundDevices[0].ServerPort);
             Assert.Equal(clientTestName, foundDevices[0].ClientName);
             Assert.True((DateTime.UtcNow - foundDevices[0].Date).TotalSeconds < 60);

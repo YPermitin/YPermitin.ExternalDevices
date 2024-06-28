@@ -1,16 +1,19 @@
-﻿using YPermitin.ExternalDevices.NetworkUtils;
+﻿using YPermitin.ExternalDevices.ManagementService.Client.Services;
+using YPermitin.ExternalDevices.NetworkUtils;
 
 namespace YPermitin.ExternalDevices.YPED
 {
     public partial class MainPage : ContentPage
     {
         private readonly DeviceDetector _deviceDetector;
-        private readonly int SearchDevicesWaitTimeSec = 60;
+        private readonly IManagementServiceClient _managementServiceClient;
+        private readonly int SearchDevicesWaitTimeSec = 15;
 
         public MainPage()
         {
             InitializeComponent();
 
+            _managementServiceClient = new ManagementServiceClient();
             _deviceDetector = new DeviceDetector();
 
             var devices = DiscoveryDevicesTable.Root.First();
@@ -66,12 +69,27 @@ namespace YPermitin.ExternalDevices.YPED
             DiscoveryDevicesBtn.IsEnabled = true;
             DiscoveryDevicesProgressBar.Progress = 1;
 
-            await DisplayAlert("Поиск устройств", "Завершен поиск устройств", "ОК");
+            await DisplayAlert("Поиск устройств", 
+                "Завершен поиск устройств", 
+                "ОК");
         }
         
         private async void DeviceItemTapped(object? sender, EventArgs e)
         {
-            await DisplayAlert("Управление устройством", "Пока в разработке...", "ОК");
+            string serviceBaseUrl = $"http://{((TextCell)sender).Detail}";
+            try
+            {
+                var info = await _managementServiceClient.GetServiceInfo(serviceBaseUrl);
+                await DisplayAlert("Управление устройством", 
+                    $"Имя: {info.Hostname}\nВремя UTC: {info.HostDateUTC}", 
+                    "ОК");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Управление устройством", 
+                    "Не удалось получить данные, попробуйте позже...", 
+                    "ОК");
+            }
         }
     }
 
