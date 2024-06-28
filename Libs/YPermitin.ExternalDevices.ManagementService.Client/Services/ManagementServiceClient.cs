@@ -9,7 +9,7 @@ namespace YPermitin.ExternalDevices.ManagementService.Client.Services
     {
         private static readonly JsonSerializerOptions DefaultJsonSerializerOptions = new()
         {
-            PropertyNameCaseInsensitive = false
+            PropertyNameCaseInsensitive = true
         };
 
         private static readonly HttpClient HttpClient = new HttpClient();
