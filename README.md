@@ -39,7 +39,30 @@ Visual Studio обязательна только для приложений н
 
 ## Развертывание проекта
 
-Инструкция появится позже.
+Развертывание приложения необходимо выполнять в среде *.nix. Для сервиса "YPermitin.ExternalDevices.ManagementService" необходим файл с настройками **appsettings.json**:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "DiscoveryInfo": {
+    "ClientName": "YY-PI.local",
+    "ClientPort": 5026 
+  }
+}
+```
+
+Раздел "DiscoveryInfo" предназначен для настройки параметров обнаружения, которые будут отображены в клиентских приложениях:
+
+* **ClientName** - имя клиента.
+* **ClientPort** - порт, по которому нужно обращаться к сервису. Вручную необходимо указывать, т.к. сам сервис может находится за прокси.
+
+В остальном шаги публикации можно узнать в статье [Развертывание ASP.NET Core приложений на Ubuntu Linux](https://ypermitin.github.io/blog/.NET/2024-03/deploy-asp-net-core-on-linux/).
 
 ## Лицензия, благодарности и послесловие
 
